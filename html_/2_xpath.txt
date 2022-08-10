@@ -1,0 +1,5 @@
+html에서 태그의 위치를 알려주는 기능
+/html/body/form/table/tr/th
+//*[@id="NM_MY_TAB"]/div/div[1]/a[3]
+
+이런식으로 위치를 알려줌
