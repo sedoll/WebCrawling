@@ -14,7 +14,7 @@ p = re.compile('ca.e') # 원하는 정규식 형태로 컴파일
 def print_match(m):
     if m:
         print('m.group(): ', m.group()) # 일치하는 문자열 반환
-        print('m.string: ', m.string) # 입력받은 문자열
+        print('m.string: ', m.string) # 입력받은 문자열 반환
         print('m.start(): ', m.start()) # 일치하는 문자열의 시작 인덱스
         print('m.end(): ', m.end()) # 일치하는 문자열의 끝 인덱스
         print('m.span(): ', m.span()) # 일치하는 문자열의 시작과 끝을 표시
