@@ -7,7 +7,7 @@ import pyperclip
 import time
 import random
 
-def clipboard_input(user_xpath, user_input):
+def clipboard_input(user_xpath, user_input): # 아이디, 비밀번호를 입력받기 위한 함수
         temp_user_input = pyperclip.paste()  # 사용자 클립보드를 따로 저장
 
         pyperclip.copy(user_input)
@@ -22,11 +22,6 @@ b_pw = '비밀번호'
 content = 'it'
 
 options = webdriver.ChromeOptions()
-
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
-# options.add_argument('--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25')
-# options.add_argument('--start-maximized')
 
 driver = webdriver.Chrome('C:\\j\\chromedriver.exe', options=options)
 driver.get('https://naver.com')
@@ -102,5 +97,8 @@ time.sleep(10)
 #         next_feed.click() 
 #         driver.implicitly_wait(15)
 
+# while True: # 화면 꺼짐 방지
+#       pass
+
 # print("좋아요 작업이 끝났습니다. 프로그램을 종료합니다.")
-driver.quit()
+# driver.quit()
