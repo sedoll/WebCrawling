@@ -1,27 +1,27 @@
-# 공주대 공지사항 스크래핑
+# 공주대 학과 공지사항 스크래핑
 
 import requests
 import csv
 from bs4 import BeautifulSoup as bs
 
-filename = '공주대 게시판 안내.csv'
+filename = '공주대 컴공 게시판 안내.csv'
 f = open(filename, 'w', encoding='utf-8-sig', newline='') # newline은 자동 줄바꿈을 없애주기 위해 사용
 writer = csv.writer(f)
 
 try:
-    for sel in (range(12499, 12503)):
-        url = f'https://www.kongju.ac.kr/kongju/{sel}/subview.do'
+    for sel in (range(11607, 11610)):
+        url = f'https://computer.kongju.ac.kr/ZD1140/{sel}/subview.do'
         res = requests.get(url)
         res.raise_for_status()
         soup = bs(res.text, 'lxml')
         
-        sub = soup.find('h2').get_text().split(',')
+        sub = soup.find('h2', attrs={'class', 'on'}).get_text().split(',')
         writer.writerow(sub)
         
         title = '번호 제목 작성자 작성일 조회 파일 링크'.split()
         writer.writerow(title)
         
-        data_rows = soup.find('table', attrs={'class': 'board-table horizon1'}).find('tbody').find_all('tr')
+        data_rows = soup.find('table').find('tbody').find_all('tr', attrs={'class': ''})
         for idx, data_row in enumerate(data_rows):
             columns = data_row.find_all('td')
             url2 = data_row.find('td', attrs={'class': 'td-subject'}).find('a')['href'] # 링크 추출
