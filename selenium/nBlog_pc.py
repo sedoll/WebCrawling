@@ -5,7 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 import pyperclip
 import time
-import random
+from random import randrange as rd
 
 def clipboard_input(user_xpath, user_input): # 아이디, 비밀번호를 입력받기 위한 함수
         temp_user_input = pyperclip.paste()  # 사용자 클립보드를 따로 저장
@@ -15,10 +15,25 @@ def clipboard_input(user_xpath, user_input): # 아이디, 비밀번호를 입력
         ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
 
         pyperclip.copy(temp_user_input)  # 사용자 클립보드에 저장 된 내용을 다시 가져 옴
-        time.sleep(2)
+        time.sleep(rd(t_min, t_max))
+        
+def input_click(elem):
+        time.sleep(rd(t_min, t_max))
+        elem.click()
+        
+def input_text(elem, text):
+        elem.click()
+        time.sleep(rd(t_min, t_max))
+        elem.send_keys(text)
+        elem.send_keys(Keys.RETURN)
 
-b_id = '아이디'
-b_pw = '비밀번호'
+# 딜레이 시간
+t_min = 3
+t_max = 5
+
+# 아이디, 비밀번호, 검색 내용
+b_id = 'id'
+b_pw = 'pw'
 content = 'it'
 
 options = webdriver.ChromeOptions()
@@ -29,7 +44,7 @@ driver.implicitly_wait(15) # 페이지가 로딩 될때 까지 최대 10초 기�
 print('로그인 진행중...')
 
 # 로그인 ---------------------------------------
-btn= driver.find_elements(By.CLASS_NAME, 'link_login')[0] # 이메일 접속
+btn= driver.find_element(By.CLASS_NAME, 'link_login') # 이메일 접속
 btn.click()
 
 # 아이디, 비밀번호 입력
@@ -42,16 +57,14 @@ driver.implicitly_wait(15)
 # ----------------------------------------------
 
 # 블로그 ----------------------------------------
-btn = driver.find_elements(By.XPATH, '//*[@id="NM_FAVORITE"]/div[1]/ul[1]/li[3]/a')[0] # 블로그 접속
-btn.click()
+btn = driver.find_element(By.XPATH, '//*[@id="NM_FAVORITE"]/div[1]/ul[1]/li[3]/a') # 블로그 접속
+input_click(btn)
 
 btn = driver.find_elements(By.TAG_NAME, 'a')[3] # 검색
-btn.click()
+input_click(btn)
 
-btn = driver.find_elements(By.XPATH, '//*[@id="header"]/div[1]/div/div[2]/form/fieldset/div/input')[0] # 블로그 접속
-btn.click()
-btn.send_keys(content)
-btn.send_keys(Keys.RETURN)
+btn = driver.find_element(By.XPATH, '//*[@id="header"]/div[1]/div/div[2]/form/fieldset/div/input') # 블로그 접속
+input_text(btn, content)
 # inputbox = driver.find_elements(By.CLASS_NAME, 'input_text__Sr51l')[0]
 # inputbox.click()
 # inputbox.send_keys('it')
@@ -59,8 +72,6 @@ btn.send_keys(Keys.RETURN)
 # inputbox = driver.find_elements(By.TAG_NAME, 'input')[0]
 # clipboard_input('//*[@id="root"]//div[1]//div//form//input', content)
 # inputbox.send_keys(Keys.RETURN)
-
-time.sleep(10)
 
 # ----------------------------------------------
 
@@ -102,3 +113,6 @@ time.sleep(10)
 
 # print("좋아요 작업이 끝났습니다. 프로그램을 종료합니다.")
 # driver.quit()
+
+while True:
+        pass
