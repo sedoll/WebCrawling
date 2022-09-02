@@ -52,7 +52,6 @@ clipboard_input('//*[@id="id"]', b_id)
 clipboard_input('//*[@id="pw"]', b_pw)
 driver.find_element(By.XPATH, '//*[@id="log.login"]').click()
 # time.sleep(5)
-driver.implicitly_wait(15)
 
 # ----------------------------------------------
 
