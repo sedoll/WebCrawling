@@ -20,9 +20,7 @@ def clipboard_input(user_xpath, user_input): # 아이디, 비밀번호를 입력
 options = webdriver.ChromeOptions()
 # options.headless = True # 웹페이지가 보이지 않고 프로그램 실행
 # options.add_argument("winddow-size=1920x1080") # 웹페이지가 보이지 않고 프로그램 실행
-options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36")
-
-# url = 'https://newslibrary.naver.com/search/searchByKeyword.naver#%7B%22mode%22%3A1%2C%22sort%22%3A0%2C%22trans%22%3A1%2C%22pageSize%22%3A10%2C%22keyword%22%3A%22%ED%83%9C%ED%92%8D%20%EC%95%A0%EA%B7%B8%EB%8B%88%EC%8A%A4%22%2C%22status%22%3A%22success%22%2C%22startIndex%22%3A1%2C%22page%22%3A1%2C%22startDate%22%3A%221920-03-05%22%2C%22endDate%22%3A%221999-12-31%22%7D'
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36") # 봇 우회
 
 name = input('주제를 입력하세요. > ')
 pages = int(input('몇 페이지 까지 크롤링 하시겠습니까? > '))
@@ -34,8 +32,10 @@ browser.get(url)
 # 딜레이 시간
 t_min = 3
 t_max = 5
-b_id = '네이버 아이디'
-b_pw = '네이버 비빌번호'
+
+# 아이디, 비밀번호 저장 변수
+b_id = '아이디' # 네이버 아이디 입력
+b_pw = '비빌번호' # 네이버 비밀번호 입력
 
 # 아이디, 비밀번호 입력
 clipboard_input('//*[@id="id"]', b_id)
